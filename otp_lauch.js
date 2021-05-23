@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 var timeout = require('connect-timeout')
 const dotenv = require('dotenv')
 const otpControl = require('./controls/otp.control.js')
@@ -8,6 +9,7 @@ const otpControl = require('./controls/otp.control.js')
 dotenv.config()
 
 app.use(express.json())
+app.use(cors())
 
 //Routing
 app.post('/api/send/sms', timeout('20s'),otpControl.SendSMSCode)
