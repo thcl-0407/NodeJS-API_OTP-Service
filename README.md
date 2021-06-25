@@ -1,5 +1,4 @@
 # .env File
-
     * PORT = 3200
     * COUNTRY_CODE = '+84'
     * TWILIO_ACCOUNT_SID = ''
