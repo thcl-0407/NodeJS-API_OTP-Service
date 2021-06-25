@@ -39,11 +39,11 @@ const uiOptions = {
 const swaggerSpecs = swaggerDoc(options)
 
 //Routing
-app.use('/doc', swaggerUI.serve)
-app.use('/doc', swaggerUI.setup(swaggerSpecs, uiOptions))
+app.use('/smsverification/doc', swaggerUI.serve)
+app.use('/smsverification/doc', swaggerUI.setup(swaggerSpecs, uiOptions))
 
 app.get('/', (req, res)=>{
-    res.redirect('/doc')
+    res.redirect('/smsverification/doc')
 })
 
 app.post('/api/sms/send', timeout('20s'), otpControl.SendSMSCode)

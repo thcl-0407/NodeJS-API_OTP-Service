@@ -5,6 +5,8 @@ const twilioService = require('./../sevices/twilio.service.js')
  * @swagger
  * /api/sms/send:
  *   post:
+ *     tags:
+ *       - SMS
  *     responses:
  *       200:
  *          description: OK
@@ -21,6 +23,17 @@ const twilioService = require('./../sevices/twilio.service.js')
  */
 const SendSMSCode = async (req, res) => {
     if(req.body.phone == undefined){
+        res.json({
+            status: false,
+            code: 404
+        })
+
+        return
+    }
+
+    let regex_phone = /^0[1-9][0-9]{8}$/
+
+    if(!regex_phone.test(req.body.phone)){
         res.json({
             status: false,
             code: 404
@@ -67,6 +80,8 @@ const SendSMSCode = async (req, res) => {
  * @swagger
  * /api/sms/verify:
  *   post:
+ *     tags:
+ *       - SMS
  *     responses:
  *       200:
  *          description: OK
@@ -86,6 +101,17 @@ const SendSMSCode = async (req, res) => {
  */
 const VerifySMSCode = async (req, res) => {
     if(req.body.phone == undefined || req.body.code == undefined){
+        res.json({
+            status: false,
+            code: 404
+        })
+
+        return
+    }
+
+    let regex_phone = /^0[1-9][0-9]{8}$/
+
+    if(!regex_phone.test(req.body.phone) || req.body.code.length != 6){
         res.json({
             status: false,
             code: 404
